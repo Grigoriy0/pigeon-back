@@ -1,8 +1,7 @@
-package com.example.demo.web;
+package com.pigeon.web;
 
-import com.example.demo.web.db.UserEntity;
-import com.example.demo.web.db.UserRepository;
-import lombok.NonNull;
+import com.pigeon.web.db.UserEntity;
+import com.pigeon.web.db.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package com.example.demo.web;
+package com.pigeon.web;
 
 
-import com.example.demo.web.db.UserEntity;
+import com.pigeon.web.db.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

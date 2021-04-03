@@ -8,12 +8,12 @@
         <version>2.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <groupId>com.pigeon</groupId>
+    <artifactId>pigeon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>demo</name>
-    <description>Demo project for Spring Boot</description>
+    <name>pigeon-back</name>
+    <description>Backend for pigeon</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -22,7 +22,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>

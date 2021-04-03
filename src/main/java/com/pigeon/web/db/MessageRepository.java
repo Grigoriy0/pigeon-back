@@ -1,10 +1,9 @@
-package com.example.demo.web.db;
-
+package com.pigeon.web.db;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends CrudRepository<UserEntity, Long> {
+public interface MessageRepository extends CrudRepository<MessageEntity, Long> {
 
 }
