@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: pigeon
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        DB_USERNAME: $DB_USERNAME
+        DB_PASSWORD: $DB_PASSWORD
+    env_file:
+      - .env
+    ports:
+      - target: 8080
+        published: 2345
+        protocol: tcp
+        mode: host
+
+
+
