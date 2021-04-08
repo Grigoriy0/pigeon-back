@@ -3,7 +3,7 @@ name: DeployApp
 on: push
 
 jobs:
-  prepare:
+  deploy:
     runs-on: ubuntu-18.04
     env:
       IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
@@ -26,7 +26,7 @@ jobs:
           sed -i "s|spring.datasource.password=|spring.datasource.password=$DB_PASSWORD|" src/main/resources/application.properties
 
       - name: Build Docker image
-        run: docker build --build-arg DB_USERNAME=$DB_USERNAME --build-arg DB_PASSWORD=$DB_PASSWORD. -t $IMAGE_NAME
+        run: docker build --build-arg DB_USERNAME=$DB_USERNAME --build-arg DB_PASSWORD=$DB_PASSWORD -t $IMAGE_NAME .
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
