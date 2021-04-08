@@ -22,8 +22,8 @@ jobs:
 
       - name: Prepare application.properties file
         run: |
-          sed -i "s|spring.datasource.username=|spring.datasource.username=$DB_USERNAME|"
-          sed -i "s|spring.datasource.password=|spring.datasource.password=$DB_PASSWORD|"
+          sed -i "s|spring.datasource.username=|spring.datasource.username=$DB_USERNAME|" src/main/resources/application.properties
+          sed -i "s|spring.datasource.password=|spring.datasource.password=$DB_PASSWORD|" src/main/resources/application.properties
 
       - name: Build Docker image
         run: docker build --build-arg DB_USERNAME=$DB_USERNAME --build-arg DB_PASSWORD=$DB_PASSWORD. -t $IMAGE_NAME
