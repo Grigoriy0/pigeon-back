@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public abstract class MessageService {
+public class MessageService {
 
     @Autowired
     private MessageRepository messageRepository;

@@ -13,6 +13,7 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
+
     @GetMapping
     public Iterable<ChatEntity> getChat() {
         return chatService.getChat();

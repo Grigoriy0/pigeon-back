@@ -10,13 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public abstract class ChatService {
+public class ChatService {
 
-    private final ChatRepository chatRepository;
-
-    public ChatService(ChatRepository chatRepository) {
-        this.chatRepository = chatRepository;
-    }
+    @Autowired
+    private ChatRepository chatRepository;
 
     public Iterable<ChatEntity> getChat() {
         return chatRepository.findAll();
@@ -33,7 +30,7 @@ public abstract class ChatService {
     }
 
     public Iterable<MessageEntity> getChatMessage(Long chatId) {
-        return getChatById(chatId).getMessages();
+        return this.getChatById(chatId).getMessages();
     }
 
     public void deleteById(Long id) {
@@ -45,6 +42,6 @@ public abstract class ChatService {
     }
 
     public void addUserById(Long chatId, UserEntity user) {
-        getChatById(chatId).getUsers().add(user);
+        this.getChatById(chatId).getUsers().add(user);
     }
 }
