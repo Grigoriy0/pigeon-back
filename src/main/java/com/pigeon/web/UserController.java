@@ -17,17 +17,17 @@ public class UserController {
         return userService.getUser();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/id/{id}")
     public UserEntity getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
-    @GetMapping(value = "/{name}")
+    @GetMapping(value = "/name/{name}")
     public Iterable<UserEntity> getUserByName(@PathVariable String name) {
         return userService.getUserByName(name);
     }
 
-    @GetMapping(value = "/{userId}/chat")
+    @GetMapping(value = "{userId}/chat")
     public Iterable<ChatEntity> getUserChat(@PathVariable Long userId) {
         return userService.getUserChat(userId);
     }
@@ -37,7 +37,7 @@ public class UserController {
         return userService.create(userEntity);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
     }
