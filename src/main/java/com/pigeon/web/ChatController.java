@@ -19,18 +19,18 @@ public class ChatController {
         return chatService.getChat();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public ChatEntity getChatById(@PathVariable Long id) {
         return chatService.getChatById(id);
     }
 
-    @GetMapping("/{chatId}/message")
+    @GetMapping(value = "/{chatId}/message")
     public Iterable<MessageEntity> getChat(@PathVariable Long chatId) {
         return chatService.getChatMessage(chatId);
     }
 
 
-    @GetMapping("/user/{userId}")
+    @GetMapping(value = "/user/{userId}")
     public Iterable<ChatEntity> getChatByUserId(@PathVariable Long userId) {
         return chatService.getChatByUserId(userId);
     }
@@ -40,7 +40,7 @@ public class ChatController {
         return chatService.create(chatEntity);
     }
 
-    @PatchMapping("/{chatId}/user")
+    @PatchMapping(value = "/{chatId}/user")
     public void addUserById(@PathVariable Long chatId, @RequestBody UserEntity user) {
         chatService.addUserById(chatId, user);
     }
