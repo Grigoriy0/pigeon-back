@@ -19,9 +19,9 @@ public class UserService {
     }
 
     public UserEntity getUserById(Long id) {
-        return userRepository.
-                findById(id).
-                orElse(null);
+        return userRepository
+                .findById(id)
+                .orElse(null);
     }
 
     public UserEntity create(UserEntity userEntity) {
@@ -34,9 +34,9 @@ public class UserService {
 
     public Iterable<UserEntity> getUserByName(String text) {
         ArrayList<UserEntity> users = (ArrayList<UserEntity>) getUser();
-        return () -> users.stream()
+        return users.stream()
                 .filter(u -> u.getUsername().contains(text))
-                .iterator();
+                ::iterator;
     }
 
     public Iterable<ChatEntity> getUserChat(Long userId) {

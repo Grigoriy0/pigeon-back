@@ -18,7 +18,9 @@ public class MessageService {
     }
 
     public MessageEntity getMessageById(Long id) {
-        return this.messageRepository.findById(id).orElse(null);
+        return messageRepository
+                .findById(id)
+                .orElse(null);
     }
 
     public MessageEntity create(MessageEntity messageEntity) {
@@ -31,8 +33,8 @@ public class MessageService {
 
     public Iterable<MessageEntity> getMessageByUserId(Long userId) {
         ArrayList<MessageEntity> messages = (ArrayList<MessageEntity>) messageRepository.findAll();
-        return () -> messages.stream()
+        return messages.stream()
                 .filter(m -> m.getUser().getId() == userId)
-                .iterator();
+                ::iterator;
     }
 }

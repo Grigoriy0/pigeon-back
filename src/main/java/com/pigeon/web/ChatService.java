@@ -24,13 +24,15 @@ public class ChatService {
     }
 
     public Iterable<ChatEntity> getChatByUserId(Long userId) {
-        return () -> ((ArrayList<ChatEntity>) getChat()).stream()
-                .filter(c -> c.getUsers().stream().anyMatch(u -> u.getId() == userId))
-                .iterator();
+        ArrayList<ChatEntity> chats = (ArrayList<ChatEntity>) getChat();
+        return chats.stream()
+                .filter(c -> c.getUsers().stream()
+                        .anyMatch(u -> u.getId() == userId)
+                )::iterator;
     }
 
     public Iterable<MessageEntity> getChatMessage(Long chatId) {
-        return this.getChatById(chatId).getMessages();
+        return getChatById(chatId).getMessages();
     }
 
     public void deleteById(Long id) {
@@ -42,6 +44,6 @@ public class ChatService {
     }
 
     public void addUserById(Long chatId, UserEntity user) {
-        this.getChatById(chatId).getUsers().add(user);
+        getChatById(chatId).getUsers().add(user);
     }
 }

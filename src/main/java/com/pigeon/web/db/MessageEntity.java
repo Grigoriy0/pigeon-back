@@ -1,5 +1,8 @@
 package com.pigeon.web.db;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,10 +21,12 @@ public class MessageEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "chat_id", nullable = false)
     private ChatEntity chat;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
