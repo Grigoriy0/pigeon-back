@@ -3,7 +3,7 @@ https://github.com/ZeusSOA/Messenger
 
 # Запросы к серверу
 Используемый протокол - HTTP.\
-HTTP запросы, поддерживаемые Spring:\
+HTTP запросы, поддерживаемые Spring:
 * GET,
 * HEAD,
 * POST,
