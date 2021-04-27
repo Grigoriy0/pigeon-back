@@ -27,7 +27,7 @@ public class UserEntity implements Serializable {
 
     private String password;
 
-    @JsonIgnoreProperties(value = "user", allowSetters = true)
+    @JsonIgnoreProperties({"user", "users", "messages"})
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"))
     private List<ChatEntity> chats = new ArrayList<>();

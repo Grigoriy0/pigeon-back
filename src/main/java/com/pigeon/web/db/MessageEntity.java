@@ -22,12 +22,12 @@ public class MessageEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JsonIgnoreProperties(value = "message", allowSetters = true)
+    @JsonIgnoreProperties(value = "messages", allowSetters = true)
     @ManyToOne
     @JoinColumn(name = "chat_id", nullable = false)
     private ChatEntity chat;
 
-    @JsonIgnoreProperties(value = "message", allowSetters = true)
+    @JsonIgnoreProperties(value = "chats", allowSetters = true)
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;

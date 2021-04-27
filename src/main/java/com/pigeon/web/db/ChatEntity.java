@@ -31,11 +31,11 @@ public class ChatEntity implements Serializable {
 
     private String chatName;
 
-    @JsonIgnoreProperties(value = "chats", allowSetters = true)
+    @JsonIgnoreProperties({"chat", "chats"})
     @ManyToMany(mappedBy = "chats", cascade = CascadeType.ALL)
     private List<UserEntity> users = new ArrayList<>();
 
-    @JsonIgnoreProperties(value = "chat", allowSetters = true)
+    @JsonIgnoreProperties({"chat", "chats"})
     @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
     private List<MessageEntity> messages = new ArrayList<>();
 }
