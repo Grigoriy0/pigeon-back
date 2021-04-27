@@ -1,6 +1,6 @@
 package com.pigeon.web.db;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +27,7 @@ public class UserEntity implements Serializable {
 
     private String password;
 
-    @JsonManagedReference
+    @JsonIgnoreProperties(value = "user", allowSetters = true)
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"))
     private List<ChatEntity> chats = new ArrayList<>();

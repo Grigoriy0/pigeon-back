@@ -2,6 +2,7 @@ package com.pigeon.web.db;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pigeon.web.model.ChatType;
 import jdk.nashorn.internal.ir.annotations.Ignore;
@@ -30,11 +31,11 @@ public class ChatEntity implements Serializable {
 
     private String chatName;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "chats")
+    @JsonIgnoreProperties(value = "chats", allowSetters = true)
+    @ManyToMany(mappedBy = "chats", cascade = CascadeType.ALL)
     private List<UserEntity> users = new ArrayList<>();
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "chat")
+    @JsonIgnoreProperties(value = "chat", allowSetters = true)
+    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
     private List<MessageEntity> messages = new ArrayList<>();
 }

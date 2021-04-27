@@ -1,5 +1,6 @@
 package com.pigeon.web;
 
+import com.pigeon.web.db.ChatEntity;
 import com.pigeon.web.db.MessageEntity;
 import com.pigeon.web.db.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class MessageService {
     private MessageRepository messageRepository;
 
     public Iterable<MessageEntity> getMessage() {
-        return this.messageRepository.findAll();
+        return messageRepository.findAll();
     }
 
     public MessageEntity getMessageById(Long id) {
@@ -32,9 +33,16 @@ public class MessageService {
     }
 
     public Iterable<MessageEntity> getMessageByUserId(Long userId) {
-        ArrayList<MessageEntity> messages = (ArrayList<MessageEntity>) messageRepository.findAll();
+        ArrayList<MessageEntity> messages = (ArrayList<MessageEntity>) getMessage();
         return messages.stream()
                 .filter(m -> m.getUser().getId() == userId)
+                ::iterator;
+    }
+
+    public Iterable<MessageEntity> getMessageByChatId(Long chatId) {
+        ArrayList<MessageEntity> messages = (ArrayList<MessageEntity>) getMessage();
+        return messages.stream()
+                .filter(m -> m.getChat().getId() == chatId)
                 ::iterator;
     }
 }

@@ -1,5 +1,6 @@
 package com.pigeon.web;
 
+import com.pigeon.web.db.ChatEntity;
 import com.pigeon.web.db.MessageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,11 @@ public class MessageController {
     @GetMapping(value = "/{id}")
     public MessageEntity getMessageById(@PathVariable Long id) {
         return messageService.getMessageById(id);
+    }
+
+    @GetMapping(value = "/chat/{chatId}")
+    public Iterable<MessageEntity> getMessageByChatId(@PathVariable Long chatId) {
+        return messageService.getMessageByChatId(chatId);
     }
 
     @GetMapping(value = "/user/{userId}")

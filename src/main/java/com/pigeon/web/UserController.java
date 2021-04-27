@@ -3,7 +3,10 @@ package com.pigeon.web;
 import com.pigeon.web.db.ChatEntity;
 import com.pigeon.web.db.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/user")
@@ -17,7 +20,7 @@ public class UserController {
         return userService.getUser();
     }
 
-    @GetMapping(value = "/id/{id}")
+    @GetMapping(value = "/{id}")
     public UserEntity getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
@@ -27,9 +30,14 @@ public class UserController {
         return userService.getUserByName(name);
     }
 
-    @GetMapping(value = "{userId}/chat")
+    @GetMapping(value = "/{userId}/chat")
     public Iterable<ChatEntity> getUserChat(@PathVariable Long userId) {
         return userService.getUserChat(userId);
+    }
+
+    @GetMapping(value = "/registration/email/{email}")
+    public boolean isRegistered(@PathVariable String email){
+        return userService.isRegistered(email);
     }
 
     @PostMapping
@@ -37,7 +45,12 @@ public class UserController {
         return userService.create(userEntity);
     }
 
-    @DeleteMapping(value = "{id}")
+//    @PostMapping(value = "/registration")
+//    public UserEntity registerUserAccount(@ModelAttribute("user") @Valid UserDto userDto, HttpServletRequest request, Errors errors) {
+//        return userService.registerNewUserAccount(userDto);
+//    }
+
+    @DeleteMapping(value = "/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
     }

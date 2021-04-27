@@ -23,14 +23,6 @@ public class ChatService {
         return chatRepository.findById(chatId).orElse(null);
     }
 
-    public Iterable<ChatEntity> getChatByUserId(Long userId) {
-        ArrayList<ChatEntity> chats = (ArrayList<ChatEntity>) getChat();
-        return chats.stream()
-                .filter(c -> c.getUsers().stream()
-                        .anyMatch(u -> u.getId() == userId)
-                )::iterator;
-    }
-
     public Iterable<MessageEntity> getChatMessage(Long chatId) {
         return getChatById(chatId).getMessages();
     }

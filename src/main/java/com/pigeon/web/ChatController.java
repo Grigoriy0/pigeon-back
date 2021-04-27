@@ -13,7 +13,6 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
-
     @GetMapping
     public Iterable<ChatEntity> getChat() {
         return chatService.getChat();
@@ -27,12 +26,6 @@ public class ChatController {
     @GetMapping(value = "/{chatId}/message")
     public Iterable<MessageEntity> getChat(@PathVariable Long chatId) {
         return chatService.getChatMessage(chatId);
-    }
-
-
-    @GetMapping(value = "/user/{userId}")
-    public Iterable<ChatEntity> getChatByUserId(@PathVariable Long userId) {
-        return chatService.getChatByUserId(userId);
     }
 
     @PostMapping
