@@ -24,7 +24,7 @@ public class UserEntity implements Serializable {
 
     private String username;
 
-    @JsonIgnore
+    @JsonIgnoreProperties(value = {"password"},allowGetters = true)
     private String password;
 
     @JsonIgnore
