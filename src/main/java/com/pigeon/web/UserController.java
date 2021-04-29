@@ -3,6 +3,8 @@ package com.pigeon.web;
 import com.pigeon.web.db.ChatEntity;
 import com.pigeon.web.db.UserEntity;
 import com.pigeon.web.model.UserAlreadyExistException;
+import com.pigeon.web.model.UserEmailOrPasswordIncorrect;
+import com.pigeon.web.model.UserNotRegistered;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -45,6 +47,11 @@ public class UserController {
     @PostMapping
     public UserEntity createUser(@RequestBody UserEntity userEntity) {
         return userService.create(userEntity);
+    }
+
+    @PostMapping
+    public UserEntity login(@RequestBody UserEntity userEntity) throws UserNotRegistered, UserEmailOrPasswordIncorrect {
+        return userService.login(userEntity);
     }
 
     @PostMapping(value = "/registration")

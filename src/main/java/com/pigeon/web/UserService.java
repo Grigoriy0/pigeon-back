@@ -5,6 +5,8 @@ import com.pigeon.web.db.UserEntity;
 import com.pigeon.web.db.UserRepository;
 import com.pigeon.web.db.VerificationTokenRepository;
 import com.pigeon.web.model.UserAlreadyExistException;
+import com.pigeon.web.model.UserEmailOrPasswordIncorrect;
+import com.pigeon.web.model.UserNotRegistered;
 import com.pigeon.web.model.UserPasswordHashing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,5 +76,19 @@ public class UserService {
             throw new UserAlreadyExistException();
         }
         return create(userEntity);
+    }
+
+    public UserEntity login(UserEntity userEntity) throws UserNotRegistered, UserEmailOrPasswordIncorrect {
+        ArrayList<UserEntity> users = (ArrayList<UserEntity>) getUser();
+        if (!isRegistered(userEntity.getEmail())) {
+            throw new UserNotRegistered();
+        }
+        Optional<UserEntity> user = users.stream()
+                .filter(u -> Objects.equals(u.getPassword(), userEntity.getPassword()))
+                .findFirst();
+        if (!user.isPresent()) {
+            throw new UserEmailOrPasswordIncorrect();
+        }
+        return user.get();
     }
 }
