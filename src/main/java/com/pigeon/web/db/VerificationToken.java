@@ -4,13 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tokens")
 @Getter
 @Setter
-public class VerificationToken {
+public class VerificationToken implements Serializable {
+
     private static final int EXPIRATION = 24 * 60; // 24 hours
 
     @Id

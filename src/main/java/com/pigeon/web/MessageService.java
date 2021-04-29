@@ -6,7 +6,9 @@ import com.pigeon.web.db.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Service
 public class MessageService {
@@ -22,6 +24,13 @@ public class MessageService {
         return messageRepository
                 .findById(id)
                 .orElse(null);
+    }
+
+    public Iterable<MessageEntity> getMessageByDateTime(String sender, LocalDateTime localDateTime) {
+        ArrayList<MessageEntity> messages = (ArrayList<MessageEntity>) getMessage();
+        return messages.stream()
+                .filter(m -> Objects.equals(m.getUser().getUsername(), sender))
+                ::iterator;
     }
 
     public MessageEntity create(MessageEntity messageEntity) {

@@ -7,8 +7,6 @@ import com.pigeon.web.db.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 public class ChatService {
 

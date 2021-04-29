@@ -1,8 +1,7 @@
 package com.pigeon.web.db;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,7 +24,12 @@ public class UserEntity implements Serializable {
 
     private String username;
 
+    @JsonIgnore
     private String password;
+
+    @JsonIgnore
+    private byte[] salt = new byte[16];
+
 
     @JsonIgnoreProperties({"user", "users", "messages"})
     @ManyToMany

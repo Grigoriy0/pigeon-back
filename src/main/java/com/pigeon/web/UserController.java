@@ -2,8 +2,10 @@ package com.pigeon.web;
 
 import com.pigeon.web.db.ChatEntity;
 import com.pigeon.web.db.UserEntity;
+import com.pigeon.web.model.UserAlreadyExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/registration/email/{email}")
-    public boolean isRegistered(@PathVariable String email){
+    public boolean isRegistered(@PathVariable String email) {
         return userService.isRegistered(email);
     }
 
@@ -45,10 +47,10 @@ public class UserController {
         return userService.create(userEntity);
     }
 
-//    @PostMapping(value = "/registration")
-//    public UserEntity registerUserAccount(@ModelAttribute("user") @Valid UserDto userDto, HttpServletRequest request, Errors errors) {
-//        return userService.registerNewUserAccount(userDto);
-//    }
+    @PostMapping(value = "/registration")
+    public UserEntity registerUserAccount(@ModelAttribute("user") @Validated UserEntity user, HttpServletRequest request, Errors errors) throws UserAlreadyExistException {
+        return userService.registerNewUserAccount(user);
+    }
 
     @DeleteMapping(value = "/{id}")
     public void deleteUser(@PathVariable Long id) {
